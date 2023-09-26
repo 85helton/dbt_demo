@@ -1,7 +1,7 @@
---c. Total revenue
+--c.Total revenue
 select 
-*
+sum(order_payments.payment_value) as Total_revenue
 
-from HELTON.demo.orders_payments
+from HELTON.demo.order_payments
 
 ;
