@@ -2,4 +2,6 @@
 select 
 *
 
-from HELTON.demo.orders
+from HELTON.demo.orders_payments
+
+;
