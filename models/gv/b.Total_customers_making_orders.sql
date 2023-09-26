@@ -1,3 +1,4 @@
+--b.Total_customers_making_orders
 select 
 customer_id, 
 count(order_id) as total_orders
