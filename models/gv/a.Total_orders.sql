@@ -1,5 +1,19 @@
 --a.Total_orders
-select 
-count(HELTON.demo.orders.order_id) as total_orders
+with snowflake_orders as (
+    select 
+    * 
+    from {{ source('HELTON', 'ORDERS') }}
+),
 
-from HELTON.demo.orders;
+final as (
+    select 
+    count(snowflake_orders.order_id) as Number_of_Orders 
+    from snowflake_orders
+)
+
+select 
+*
+
+from final;
+
+

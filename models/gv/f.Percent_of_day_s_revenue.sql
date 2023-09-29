@@ -1,26 +1,37 @@
 --f.Percent of day’s revenue associated with each of the top 3 product categories
+with 
 
+payments as (
+    select * from {{ source('HELTON', 'order_payments') }}
+),
+
+items as (
+    select * from {{ source('HELTON', 'order_items') }} 
+),
+
+products as (
+    select * from {{ source('HELTON', 'products') }}
+),
+
+
+final as (
 select 
 top 3
 products.product_category_name,
-payments.
-sum(order_items.price) as order_total
+sum(items.price) as order_total
 
-from HELTON.demo.order_payments as payments
+from payments
 
-inner join HELTON.demo.order_items as order_items on
-payments.order_id = order_items.order_id
+inner join items on
+payments.order_id = items.order_id
 
-inner join HELTON.demo.products as products on
-order_items.product_id = products.product_id
-
-inner join HELTON.demo.orders as orders on
-order.order_id = payments.order_id
-
+inner join products on
+items.product_id = products.product_id
 
 group by 
 products.product_category_name
 
 ORDER BY order_total desc
-;
---select * from HELTON.demo.orders
+)
+
+select * from final

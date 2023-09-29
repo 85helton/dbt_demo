@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: HELTON
+    description: brooklyndata
+    database: HELTON  
+    schema: DEMO 
+    tables:
+      - name: ORDERS
+      - name: order_payments
+      - name: order_items
+      - name: products
