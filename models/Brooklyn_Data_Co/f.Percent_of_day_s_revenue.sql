@@ -18,7 +18,7 @@ orders as (
     select * from {{ source('HELTON', 'ORDERS') }}
 ),
 
---Logicac CTE
+--Logical CTE
 top3_categories as (
 
 select 

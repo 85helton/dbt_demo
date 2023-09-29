@@ -1,6 +1,7 @@
 --e.Top_3_product_categories_by_revenue_(by_day)
 with 
 
+--Import CTE
 payments as (
     select * from {{ source('HELTON', 'order_payments') }}
 ),
@@ -13,7 +14,7 @@ products as (
     select * from {{ source('HELTON', 'products') }}
 ),
 
-
+--Final CTE
 final as (
 select 
 top 3
@@ -34,4 +35,5 @@ products.product_category_name
 ORDER BY order_total desc
 )
 
+--End
 select * from final
